@@ -1,0 +1,8 @@
+export enum RoomState {
+  EMPTY = "EMPTY",
+  OCCUPIED = "OCCUPIED",
+  RESERVED = "RESERVED",
+  OUT_OF_SERVICE = "OUT_OF_SERVICE",
+  CLEANING = "CLEANING",
+  PAUSED = "PAUSED",
+}
