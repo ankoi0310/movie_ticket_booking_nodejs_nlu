@@ -6,6 +6,8 @@ export const COLLECTION_NAME = "genre";
 export default interface Genre {
   _id: Types.ObjectId;
   name: string;
+  description?: string;
+  status: boolean;
 }
 
 const schema = new Schema<Genre>({
@@ -13,6 +15,15 @@ const schema = new Schema<Genre>({
     type: String,
     required: true,
     trim: true,
+  },
+  description: {
+    type: String,
+    trim: true,
+  },
+  status: {
+    type: Boolean,
+    required: true,
+    default: true,
   },
 }, {
   versionKey: false,
