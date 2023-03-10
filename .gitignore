@@ -1,5 +1,7 @@
 node_modules/
-.vscode/
-.babelrc
+build/
+key/
+logs/
+.vscode
 
 .env
