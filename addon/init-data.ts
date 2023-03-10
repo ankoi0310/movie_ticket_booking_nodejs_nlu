@@ -9,17 +9,60 @@ mongoose.connect(uri).then(async () => {
   console.log("Connected to MongoDB");
 
   // check if the database is already initialized
-  mongoose.connection.db.databaseName;
+  // mongoose.connection.db.databaseName;
 
-  const db = mongoose.connection;
+  const db = mongoose.connection.db;
 
   await db.dropCollection('app_user');
   await db.dropCollection('api_key');
-  await db.dropCollection('role');
+
+  if (!(await db.listCollections({ name: 'role' }).hasNext())) {
+    await db.createCollection('role');
+
+    await db.collection('role').insertMany([
+      {
+        type: 'USER',
+        status: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        type: 'ADMIN',
+        status: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
+  }
+
+  if (!(await db.listCollections({ name: 'genre' }).hasNext())) {
+    await db.createCollection('genre');
+
+    await db.collection('genre').insertMany([
+      { name: 'Action' },
+      { name: 'Adventure' },
+      { name: 'Animation' },
+      { name: 'Comedy' },
+      { name: 'Crime' },
+      { name: 'Documentary' },
+      { name: 'Drama' },
+      { name: 'Family' },
+      { name: 'Fantasy' },
+      { name: 'History' },
+      { name: 'Horror' },
+      { name: 'Music' },
+      { name: 'Mystery' },
+      { name: 'Romance' },
+      { name: 'Science Fiction' },
+      { name: 'TV Movie' },
+      { name: 'Thriller' },
+      { name: 'War' },
+      { name: 'Western' },
+    ]);
+  }
 
   await db.createCollection('app_user');
   await db.createCollection('api_key');
-  await db.createCollection('role');
 
   await db.collection('api_key').deleteMany({});
   await db.collection('api_key').insertOne({
@@ -31,22 +74,6 @@ mongoose.connect(uri).then(async () => {
     createdAt: new Date(),
     updatedAt: new Date(),
   });
-
-  await db.collection('role').deleteMany({});
-  await db.collection('role').insertMany([
-    {
-      type: 'USER',
-      status: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      type: 'ADMIN',
-      status: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ]);
 
   // clear data from the collection
   await db.collection('app_user').deleteMany({});
