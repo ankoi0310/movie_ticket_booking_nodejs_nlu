@@ -1,5 +1,5 @@
 import { Schema, Types, model } from "mongoose";
-import Cinema from "./cinema";
+import Cinema from "./branch";
 import Seat from "./seat";
 
 export const DOCUMENT_NAME = "Room";

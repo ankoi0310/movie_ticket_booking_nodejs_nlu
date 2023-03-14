@@ -6,6 +6,6 @@ export const UserInfoRepository = {
   },
 
   async update(userInfo: UserInfo): Promise<UserInfo | null> {
-    return UserInfoModel.findOneAndUpdate({ _id: userInfo._id }, userInfo, { new: true });
+    return UserInfoModel.findOneAndUpdate({ id: userInfo.id }, userInfo, { new: true });
   }
 }
