@@ -1,6 +1,6 @@
 import { Schema, Types, model } from "mongoose";
 import Movie from "./movie";
-import Cinema from "./cinema";
+import Cinema from "./branch";
 import Room from "./room";
 import Showtime from "./showtime";
 import Ticket from "./ticket";
