@@ -1,4 +1,4 @@
-export enum CinemaState {
+export enum BranchState {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
 }
